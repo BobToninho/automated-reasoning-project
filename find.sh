@@ -9,3 +9,5 @@ do
       exit 0
   esac
 done
+
+echo "No solution found"
