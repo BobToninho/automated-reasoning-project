@@ -1,7 +1,9 @@
+data_file=$1
+
 for i in {1..30}
 do
   echo -e "\nt=$i\n"
-  clingo -c t=$i invaders.lp aliens0.lp 1
+  clingo -c t=$i invaders.lp $data_file 1
   exit_code=$?
 
   case $exit_code in

@@ -1,0 +1,1 @@
+rg cannon1 | sed 's/ /\n/g' | awk -F'[(),]' '{print $2, $0}' | sort -n | cut -d' ' -f2- 
