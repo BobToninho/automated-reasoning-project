@@ -7,8 +7,6 @@ alien(1..a).
 
 % at(time T, cannon C, xaxis X, yaxis Y)
 % at(time T,  alien A, xaxis X, yaxis Y)
-1 { at(T,A,X,Y): xaxis(X), yaxis(Y) } 1 :- time(T), alien(A).
-1 { at(T,C,X,Y): xaxis(X), yaxis(Y) } 1 :- time(T), cannon(C).
 1 { move(T,C,X): xaxis(X); shoot(T,C,A): alien(A) } 1 :- time(T), T < t, cannon(C).
 
 % INITIAL STATE
