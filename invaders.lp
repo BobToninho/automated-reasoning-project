@@ -1,7 +1,9 @@
+% <input>
 #const t=5.
 #const a=3.
 #const mx=7.
 #const my=7.
+% </input>
 
 %%% DOMAIN PREDICATES
 time(0..t).
@@ -27,10 +29,12 @@ alien(1..a).
 % at(time T, cannon C, xaxis X, yaxis Y)
 % at(time T,  alien A, xaxis X, yaxis Y)
 
+% <input>
 at(0,cannon1,0,0).
 at(0,1,4,4).
 at(0,2,5,5).
 at(0,3,3,6).
+% </input>
 
 goal :- dead(t,1), dead(t,2).
 :- not goal.
