@@ -1,6 +1,6 @@
 for i in {1..30}
 do
-  echo "t=$i"
+  echo -e "\nt=$i\n"
   clingo -c t=$i invaders5.lp 1
   exit_code=$?
 
