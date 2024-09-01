@@ -16,3 +16,24 @@ Write a short report (5-10) pages report containing
 Prepare the programs and the benchmark instances used in a unique zip file.
 
 ![Project task](./project_task.png)
+
+## Instructions
+
+Main file is invaders.lp. The files with the instances are aliens{n}.lp.
+
+Run `clingo invaders.lp aliens0.lp -c t=4` for the basic example.
+Commands:
+```bash
+clingo invaders.lp aliens0.lp -c t=4
+clingo invaders.lp aliens3.lp -c t=42
+clingo invaders.lp aliens5.lp -c t=210 --time-limit=300
+```
+
+`output_beautified.lp` contains the output of aliens3.lp with t=42.
+
+## Partial results
+
+- A solution with aliens0.lp is found in 22 seconds, with t=42
+- A solution with aliens3.lp is found in 22 seconds, with t=42
+- aliens5.lp times out with t=210
+
