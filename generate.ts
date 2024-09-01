@@ -5,9 +5,9 @@ function printAlien({ id, x, y }: { id: number; x: number; y: number }) {
 }
 
 function main() {
-  const x = 20;
-  const y = 50;
-  const numberOfAliens = 20;
+  const x = 200;
+  const y = 200;
+  const numberOfAliens = 100;
   let output = `#const mx=${x}.
 #const my=${y}.
 #const a=${numberOfAliens}.
@@ -15,8 +15,8 @@ function main() {
 `;
 
   for (let i = 1; i <= numberOfAliens; i++) {
-    // const xPos = Math.round(Math.random() * x);
-    const xPos = x - i
+    const xPos = Math.round(Math.random() * x);
+    // const xPos = x - i
     // const yPos = Math.round((Math.random() * (y - 1)) + 1);
     const yPos = y - i;
 
