@@ -7,6 +7,7 @@
 % 0 c - - - - -
 %   0 1 2 3 4 5 xaxis
 
+% #const t=4
 #const mx=6.
 #const my=6.
 

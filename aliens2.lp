@@ -1,3 +1,4 @@
+% #const t=10
 #const mx=10.
 #const my=21.
 #const a=10.
