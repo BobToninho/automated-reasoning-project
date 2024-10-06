@@ -29,8 +29,6 @@ constraint forall(j in ALIENS) (
 
 constraint forall(j in ALIENS) (
   exists(i in TIME) (
-    move_x[i] = aliens_x_initial[j]
-    /\
     cannon_x[i+1] = move_x[i]
   )
 );
