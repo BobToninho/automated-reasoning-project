@@ -1,7 +1,7 @@
 int: t = 4;  % Time steps
-int: x = 5;
-int: y = 5;
+int: mx = 6;
+int: my = 6;
 int: a = 2;
 
-array[1..a] of 1..x: aliens_x_initial = [3, 5];
-array[1..a] of 1..y: aliens_y_initial = [3, 5];
+array[1..a] of 0..mx-1: aliens_x_initial = [4, 5];
+array[1..a] of 0..my-1: aliens_y_initial = [4, 5];

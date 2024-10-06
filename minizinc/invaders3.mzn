@@ -27,38 +27,33 @@ constraint forall(j in ALIENS) (
 
 /* ACTIONS */
 
-% Move effect
-% When the cannon is moved, the cannon position is updated with the move target
-constraint forall(i in TIME) (
-  (move_x[i] != -1) -> (cannon_x[i+1] = move_x[i] /\ shoot[i] = 0)
-);
-constraint forall(i in TIME) (
-exists(j in ALIENS) (
-  move_x[i] = aliens_x_initial[j]
-)
-);
-/* constraint forall(i in TIME) ( */
-/*   (move_x[i] != -1) */
-/*     /\ */
-/*   ( */
-/*     cannon_x[i+1] = move_x[i] */
-/*     /\ */
-/*     shoot[i] = 0 */
-/*   ) */
-/* ); */
-
-% Shoot effect
-constraint exists(i in TIME) (
-exists(j in ALIENS) (
-  (cannon_x[i] == aliens_x_initial[j])
+constraint forall(j in ALIENS) (
+  exists(i in TIME) (
+    move_x[i] = aliens_x_initial[j]
     /\
-  (aliens_dead[j,i] = false)
+    cannon_x[i+1] = move_x[i]
+  )
+);
+constraint forall(j in ALIENS) (
+  exists(i in TIME) (
+    shoot[i] = j
     /\
-  (shoot[i] = j)
-)
+    cannon_x[i+1] = cannon_x[i]
+  )
 );
 constraint forall(i in TIME, j in ALIENS) (
-  (shoot[i] == j) -> (aliens_dead[j,i+1] = true)
+  (move_x[i] == -1 /\ shoot[i] != 0)
+  \/
+  (move_x[i] != -1 /\ shoot[i] == 0)
+);
+constraint forall(j in ALIENS) (
+  exists(i in TIME) (
+    aliens_dead[j,i+1]
+    /\
+    shoot[i] = j
+    /\
+    cannon_x[i] == aliens_x_initial[j]
+  )
 );
 
 
@@ -80,35 +75,6 @@ constraint forall(i in TIME, j in ALIENS) (
   (aliens_dead[j,i] == false) -> (aliens_y[j,i+1] = max(1, aliens_y[j,i] - 1))
 );
 
-% When the cannon is moving, move it to an alien's position
-/* constraint forall(i in TIME, j in ALIENS) ( */
-/*   (move_x[i] = aliens_x_initial[j]) */
-/*     \/ */
-/*   (move_x[i] = -1) */
-/* ); */
-% When the cannon is shooting, shoot to an alien
-/* constraint forall(i in TIME, j in ALIENS) ( */
-/*   shoot[i] = j */
-/*     \/ */
-/*   shoot[i] = 0 */
-/* ); */
-
-% We have either the cannon moving or the cannon shooting
-% 0 and -1 are the respective "null values"
-constraint forall(i in TIME, j in ALIENS) (
-  (shoot[i] == 0) -> (move_x[i] != -1)
-);
-constraint forall(i in TIME, j in ALIENS) (
-  (shoot[i] != 0) -> (move_x[i] == -1)
-);
-constraint forall(i in TIME, j in ALIENS) (
-  (move_x[i] != -1) -> (shoot[i] == 0)
-);
-constraint forall(i in TIME, j in ALIENS) (
-  (move_x[i] == -1) -> (shoot[i] != 0)
-);
-
-
 
 
 /* Constraints */
@@ -122,12 +88,12 @@ constraint all_different_except_0(shoot);
 /* constraint move_x[2] = 5; */
 /* constraint shoot[3] = 2; */
 
-/* constraint forall(j in ALIENS) ( */
-/*   aliens_dead[j,t] = true */
-/* ); */
-/* solve satisfy; */
+constraint forall(j in ALIENS) (
+  aliens_dead[j,t] = true
+);
+solve satisfy;
 
-solve maximize sum(i in ALIENS)(aliens_dead[i,t]);
+/* solve maximize sum(i in ALIENS)(aliens_dead[i,t]); */
 
 output [
   "t:\t\t\t" ++ show(t) ++ "\n" ++
@@ -142,3 +108,4 @@ output [
   "aliens_y:\t\t" ++ show(aliens_y) ++ "\n" ++
   "aliens_dead:\t\t" ++ show(aliens_dead) ++ "\n"
 ];
+
