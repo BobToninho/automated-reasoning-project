@@ -19,26 +19,25 @@ constraint forall(j in ALIENS) (
   aliens_dead[j,0] = false
 );
 
-/* Aliens initial position */
+/* Aliens' initial position */
 constraint forall(j in ALIENS) (
   aliens_y[j,0] = aliens_y_initial[j]
 );
 
 
 /* ACTIONS */
-
 constraint forall(j in ALIENS) (
   exists(i in TIME) (
-    move_x[i] = aliens_x_initial[j]
+    move_x[i] == aliens_x_initial[j]
     /\
-    cannon_x[i+1] = move_x[i]
+    cannon_x[i+1] == move_x[i]
   )
 );
 constraint forall(j in ALIENS) (
   exists(i in TIME) (
-    shoot[i] = j
+    shoot[i] == j
     /\
-    cannon_x[i+1] = cannon_x[i]
+    cannon_x[i+1] == cannon_x[i]
   )
 );
 constraint forall(i in TIME, j in ALIENS) (
@@ -50,23 +49,17 @@ constraint forall(j in ALIENS) (
   exists(i in TIME) (
     aliens_dead[j,i+1]
     /\
-    not aliens_dead[j,i]
-    /\
     shoot[i] = j
     /\
     cannon_x[i] == aliens_x_initial[j]
+    /\
+    not aliens_dead[j,i]
   )
 );
 
 
 
 /* INERTIA */
-
-/* constraint exists(i in TIME) ( */
-/*   (move_x[i] == -1) */
-/*   /\ */
-/*   (cannon_x[i+1] = cannon_x[i]) */
-/* ); */
 constraint forall(i in TIME, j in ALIENS) (
   (aliens_dead[j,i] == true) -> (
     aliens_dead[j,i+1] = true /\
@@ -79,7 +72,7 @@ constraint forall(i in TIME, j in ALIENS) (
 
 
 
-/* Constraints */
+/* CONSTRAINTS */
 % It's possible to shoot to an alien only once
 constraint all_different_except_0(shoot);
 
