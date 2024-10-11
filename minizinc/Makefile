@@ -6,3 +6,6 @@ default:
 
 2:
 	minizinc.exe --time-limit 300000 invaders.mzn aliens2.mzn
+
+3:
+	minizinc.exe --time-limit 300000 invaders.mzn aliens3.mzn
