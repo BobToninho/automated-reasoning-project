@@ -1,2 +1,2 @@
-- verify that it works with different inputs
 - generate big inputs
+- check if possible to visualize arrayXd with builtin functions
