@@ -26,6 +26,7 @@ constraint forall(j in ALIENS) (
 
 
 /* ACTIONS */
+% Move effect
 constraint forall(j in ALIENS) (
   exists(i in TIME) (
     move_x[i] == aliens_x_initial[j]
@@ -33,6 +34,7 @@ constraint forall(j in ALIENS) (
     cannon_x[i+1] == move_x[i]
   )
 );
+% Shoot effect
 constraint forall(j in ALIENS) (
   exists(i in TIME) (
     shoot[i] == j
@@ -40,11 +42,13 @@ constraint forall(j in ALIENS) (
     cannon_x[i+1] == cannon_x[i]
   )
 );
+% At any given time step the cannon either moves or shoots
 constraint forall(i in TIME, j in ALIENS) (
   (move_x[i] == -1 /\ shoot[i] != 0)
   \/
   (move_x[i] != -1 /\ shoot[i] == 0)
 );
+% The cannon moves where the living aliens are
 constraint forall(j in ALIENS) (
   exists(i in TIME) (
     aliens_dead[j,i+1]
@@ -60,12 +64,14 @@ constraint forall(j in ALIENS) (
 
 
 /* INERTIA */
+% If an alien is dead it stays dead and its y position does not change
 constraint forall(i in TIME, j in ALIENS) (
   (aliens_dead[j,i] == true) -> (
     aliens_dead[j,i+1] = true /\
     aliens_y[j,i+1] = aliens_y[j,i]
   )
 );
+% Living aliens decrease their y-axe position each time step
 constraint forall(i in TIME, j in ALIENS) (
   (aliens_dead[j,i] == false) -> (aliens_y[j,i+1] = max(1, aliens_y[j,i] - 1))
 );
@@ -78,6 +84,7 @@ constraint all_different_except_0(shoot);
 
 
 
+% Goal
 constraint forall(j in ALIENS) (
   aliens_dead[j,t] = true
 );
@@ -86,6 +93,8 @@ solve satisfy;
 /* solve maximize sum(i in ALIENS)(aliens_dead[i,t]); */
 
 output [
+2:
+	minizinc.exe --time-limit 300000 invaders.mzn aliens2.mzn
   "t:\t\t\t" ++ show(t) ++ "\n" ++
   "mx:\t\t\t" ++ show(mx) ++ "\n" ++
   "my:\t\t\t" ++ show(my) ++ "\n" ++
