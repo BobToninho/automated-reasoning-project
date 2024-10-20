@@ -3,6 +3,6 @@
 /home/linuxbrew/.linuxbrew/bin/hyperfine --warmup 3 --runs 5 --export-markdown benchmark_report_aliens.md --ignore-failure \
   'clingo invaders.lp aliens0.lp -c t=4' \
   'clingo invaders.lp aliens1.lp -c t=5' \
-  'clingo invaders.lp aliens2.lp -c t=18 --time-limit=300' \
-  'clingo invaders.lp aliens3.lp -c t=42 --time-limit=300' \
-  'clingo invaders.lp aliens5.lp -c t=210 --time-limit=300'
+  'clingo invaders.lp aliens2.lp -c t=18 --time-limit=300'
+  # 'clingo invaders.lp aliens3.lp -c t=42 --time-limit=300' \
+  # 'clingo invaders.lp aliens5.lp -c t=210 --time-limit=300'
