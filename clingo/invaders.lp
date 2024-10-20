@@ -7,16 +7,13 @@ alien(1..a).
 
 % at(time T, cannon C, xaxis X, yaxis Y)
 % at(time T,  alien A, xaxis X, yaxis Y)
+% either move OR shoot, at each time step < t
 1 { move(T,C,X): xaxis(X); shoot(T,C,A): alien(A) } 1 :- time(T), T < t, cannon(C).
 
 % INITIAL STATE
 at(0,cannon1,0,0).
 
-
-% GOAL
-goal :- #count{X : dead(t,X)} == a.
-:- not goal.
-
+% ACTIONS
 % Move effect
 
 at(T+1,C,X,0) :-
@@ -83,6 +80,9 @@ at(T+1,A,X,Y-1) :-
     xaxis(X),
     alien(A).
 
+% GOAL
+goal :- #count{X : dead(t,X)} == a.
+:- not goal.
 
 #show at/4.
 #show move/3.
