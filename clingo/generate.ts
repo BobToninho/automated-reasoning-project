@@ -5,9 +5,9 @@ function printAlien({ id, x, y }: { id: number; x: number; y: number }) {
 }
 
 function main() {
-  const x = 200;
-  const y = 200;
-  const numberOfAliens = 100;
+  const x = 50;
+  const y = 80;
+  const numberOfAliens = 30;
   let output = `#const mx=${x}.
 #const my=${y}.
 #const a=${numberOfAliens}.
