@@ -1,3 +1,5 @@
+#!/bin/bash
+
 trap 'echo "Script interrupted"; exit 1' SIGINT SIGTERM
 
 data_file=${1:-aliens0.lp}
@@ -8,7 +10,8 @@ echo -e "Running $data_file with t from $min_tries to $max_tries"
 
 for i in $(seq $min_tries $max_tries);
 do
-  clingo -c t=$i invaders.lp $data_file 1 > /dev/null
+  echo "Trying $i"
+  clingo --time-limit=300 -c t=$i invaders.lp $data_file 1 > /dev/null
   exit_code=$?
 
   case $exit_code in
