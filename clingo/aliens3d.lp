@@ -1,3 +1,4 @@
+#const t=82.
 #const mx=100.
 #const my=100.
 #const a=40.

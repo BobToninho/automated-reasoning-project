@@ -1,4 +1,4 @@
-% #const t=90.
+#const t=90.
 #const mx=20.
 #const my=110.
 #const a=50.
