@@ -2,6 +2,7 @@
   "results": [
     {
       "command": "clingo invaders.lp aliens1.lp --time-limit=300",
+      "label": "aliens1.lp",
       "mean": 0.006779643519999999,
       "stddev": 0.0013517577600099515,
       "median": 0.006622001219999999,
@@ -36,6 +37,7 @@
     },
     {
       "command": "clingo invaders.lp aliens2.lp --time-limit=300",
+      "label": "aliens2.lp",
       "mean": 2.46423609022,
       "stddev": 0.023198512549835622,
       "median": 2.46257984772,
@@ -70,6 +72,7 @@
     },
     {
       "command": "clingo invaders.lp aliens3.lp --time-limit=300",
+      "label": "aliens3.lp",
       "mean": 62.981196462219984,
       "stddev": 0.7986247807593213,
       "median": 63.14673844622,
@@ -104,6 +107,7 @@
     },
     {
       "command": "clingo invaders.lp aliens4.lp --time-limit=300",
+      "label": "aliens4.lp",
       "mean": 39.69487904872,
       "stddev": 0.5111299576051824,
       "median": 39.791613347719995,
@@ -138,6 +142,7 @@
     },
     {
       "command": "clingo invaders.lp aliens5.lp --time-limit=300",
+      "label": "aliens5.lp",
       "mean": 5.95528227562,
       "stddev": 0.16300894510035985,
       "median": 5.89189723622,
@@ -172,6 +177,7 @@
     },
     {
       "command": "clingo invaders.lp aliens6.lp --time-limit=300",
+      "label": "aliens6.lp",
       "mean": 62.344191006719996,
       "stddev": 0.2809612670051474,
       "median": 62.391468143219996,
@@ -206,6 +212,7 @@
     },
     {
       "command": "clingo invaders.lp aliens7.lp --time-limit=300",
+      "label": "aliens7.lp",
       "mean": 123.47660686312,
       "stddev": 1.3002259534568557,
       "median": 123.18527473072001,
@@ -240,6 +247,7 @@
     },
     {
       "command": "clingo invaders.lp aliens8.lp --time-limit=300",
+      "label": "aliens8.lp",
       "mean": 300.01003529672,
       "stddev": 0.0027510271242224276,
       "median": 300.00902418622,
@@ -274,6 +282,7 @@
     },
     {
       "command": "clingo invaders.lp aliens9.lp --time-limit=300",
+      "label": "aliens9.lp",
       "mean": 300.01146360472,
       "stddev": 0.0022884425544490135,
       "median": 300.01098877571997,
@@ -308,6 +317,7 @@
     },
     {
       "command": "clingo invaders.lp aliens10.lp --time-limit=300",
+      "label": "aliens10.lp",
       "mean": 300.07638277262,
       "stddev": 0.035009817713473175,
       "median": 300.06497868122,
