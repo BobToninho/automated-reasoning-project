@@ -22,6 +22,13 @@
 \textheight=9.0in
 \headsep=0.25in
 
+\usepackage[margin=0.25in]{geometry}
+
+\usepackage{pgfplots}
+
+\pgfplotsset{width=10cm,compat=1.9}
+
+
 \title{Automated reasoning project report}
 \author{Roberto Tonino}
 \date{October ??, 2024}
@@ -95,6 +102,65 @@ Inertia rules are represented by a QBF of the form: <formula>. The idea is to ha
 
 Finally, the only constraint in the model prohibits the cannon to shoot to teh same alien twice. This can probably be removed by adding a precondition to the shoot action.
 
+\section{Benchmark clingo model}
 
-\end{document}
+% \begin{center}
+  \begin{tabular}{ |l|c|c|c|c| }
+    \hline
+    Aliens & Mean[ms] & Min[ms] & Max[ms] \\
+    \hline
+    aliens0.lp & $4.4 \pm 0.7$ & $3.9$ & $5.5$ \\
+    aliens1.lp & $6.5 \pm 0.5$ & $5.8$ & $7.1$ \\
+    aliens2.lp --time-limit=300 & $2381.7 \pm 47.9$ & $2330.5$ & $2432.5$ \\
+    aliens3.lp --time-limit=300 & $84432.1 \pm 14040.2$ & $60964.1$ & $97273.0$ \\
+    aliens4.lp --time-limit=300 & $51107.8 \pm 966.2$ & $49817.4$ & $52240.8$ \\
+    aliens5.lp --time-limit=300 & $7148.1 \pm 194.4$ & $6815.7$ & $7296.4$ \\
+    aliens6.lp --time-limit=300 & $60.205 \pm 0.950$ & $58.645$ & $61.179$ \\
+    aliens7.lp --time-limit=300 & $116.050 \pm 1.831$ & $114.314$ & $118.987$ \\
+    aliens8.lp --configuration=trendy --time-limit=300 & $123.723 \pm 1.000$ & $122.727$ & $124.992$ \\
+    aliens9.lp --configuration=jumpy --time-limit=300 & $183.348 \pm 0.742$ & $182.791$ & $184.632$ \\
+    aliens10.lp --time-limit=300 & $300.073 \pm 0.006$ & $300.064$ & $300.079$ \\
+    \hline
+  \end{tabular}
+% \end{center}
+
+\begin{tikzpicture}
+  \begin{axis}[
+    width=\textwidth,
+    height=12cm,
+    ybar,
+    ymode=log,
+    ylabel={Mean Execution Time [ms]},
+    xlabel={Test Case},
+    symbolic x coords={0,1,2,3,4,5,6,7,8,9,10},
+    xtick=data,
+    nodes near coords,
+    nodes near coords align={vertical},
+    every node near coord/.append style={rotate=90, anchor=west, font=\small},
+    enlarge x limits=0.05,
+    legend style={at={(0.5,-0.2)}, anchor=north},
+    ylabel style={align=center},
+    bar width=6pt
+    ]
+
+      \addplot coordinates {
+        (1,6.5)
+        (2,2381)
+        (3,84432)
+        (4,51107)
+        (5,7148)
+        (6,60205)
+        (7,116050)
+        (8,123723)
+        (9,183348)
+        (10,300073)
+        };
+        \legend{Execution Time}
+    \end{axis}
+  \end{tikzpicture}
+
+
+
+
+  \end{document}
 

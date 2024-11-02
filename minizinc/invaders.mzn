@@ -93,8 +93,6 @@ solve satisfy;
 /* solve maximize sum(i in ALIENS)(aliens_dead[i,t]); */
 
 output [
-2:
-	minizinc.exe --time-limit 300000 invaders.mzn aliens2.mzn
   "t:\t\t\t" ++ show(t) ++ "\n" ++
   "mx:\t\t\t" ++ show(mx) ++ "\n" ++
   "my:\t\t\t" ++ show(my) ++ "\n" ++

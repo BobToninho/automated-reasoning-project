@@ -1,0 +1,12 @@
+#!/bin/sh
+
+grep --color=none at\( ../clingo/aliens1.lp | bun convert.ts
+grep --color=none at\( ../clingo/aliens2.lp | bun convert.ts
+grep --color=none at\( ../clingo/aliens3.lp | bun convert.ts
+grep --color=none at\( ../clingo/aliens4.lp | bun convert.ts
+grep --color=none at\( ../clingo/aliens5.lp | bun convert.ts
+grep --color=none at\( ../clingo/aliens6.lp | bun convert.ts
+grep --color=none at\( ../clingo/aliens7.lp | bun convert.ts
+grep --color=none at\( ../clingo/aliens8.lp | bun convert.ts
+grep --color=none at\( ../clingo/aliens9.lp | bun convert.ts
+grep --color=none at\( ../clingo/aliens10.lp | bun convert.ts
