@@ -1,0 +1,24 @@
+#!/bin/sh -e
+
+trap '[ $? -eq 0 ] && echo "Everything ran fine!" || echo "Some test failed"' EXIT
+
+# echo "Running aliens1..."
+# minizinc.exe invaders.mzn aliens1.mzn --time-limit 300000 # ok
+# echo "Running aliens2..."
+# minizinc.exe invaders.mzn aliens2.mzn --time-limit 300000 # ok
+# echo "Running aliens3..."
+# minizinc.exe invaders.mzn aliens3.mzn --time-limit 300000
+# echo "Running aliens4..."
+# minizinc.exe invaders.mzn aliens4.mzn --time-limit 300000
+# echo "Running aliens5..."
+# minizinc.exe invaders.mzn aliens5.mzn --time-limit 300000
+echo "Running aliens6..."
+minizinc.exe invaders.mzn aliens6.mzn --time-limit 300000
+echo "Running aliens7..."
+minizinc.exe invaders.mzn aliens7.mzn --time-limit 300000
+echo "Running aliens8..."
+minizinc.exe invaders.mzn aliens8.mzn --time-limit 300000
+echo "Running aliens9..."
+minizinc.exe invaders.mzn aliens9.mzn --time-limit 300000
+echo "Running aliens10..."
+minizinc.exe invaders.mzn aliens10.mzn --time-limit 300000
