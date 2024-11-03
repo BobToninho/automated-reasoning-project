@@ -1,2 +1,2 @@
-- generate big inputs
-- check if possible to visualize arrayXd with builtin functions
+- explore different search strategies
+- explore different solvers
