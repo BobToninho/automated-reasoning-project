@@ -22,4 +22,4 @@
   'minizinc.exe invaders.mzn aliens7.mzn --time-limit 300000 --solver org.chuffed.chuffed' \
   'minizinc.exe invaders.mzn aliens8.mzn --time-limit 300000 --solver org.chuffed.chuffed' \
   'minizinc.exe invaders.mzn aliens9.mzn --time-limit 300000 --solver org.chuffed.chuffed' \
-  'minizinc.exe invaders.mzn aliens10.mzn --time-limit 300000--solver org.chuffed.chuffed''
+  'minizinc.exe invaders.mzn aliens10.mzn --time-limit 300000--solver org.chuffed.chuffed'

@@ -3,6 +3,7 @@ const re = /at\(0,(\d+),(\d+),(\d+)/;
 const alienXs = []
 const alienYs = []
 
+// Read lines from stdin
 for await (const line of console) {
   if (line === "") {
     continue;
@@ -21,5 +22,5 @@ for await (const line of console) {
 array[1..a] of 0..mx-1: aliens_x_initial = [7, 7, 9];
 array[1..a] of 0..my-1: aliens_y_initial = [9, 9, 9];
 */
-console.log(`[${alienXs.toString()}]`);
-console.log(`[${alienYs.toString()}]`);
+console.log(`array[1..a] of 0..mx-1: aliens_x_initial = [${alienXs.toString()}];`);
+console.log(`array[1..a] of 0..my-1: aliens_y_initial = [${alienYs.toString()}];`);
