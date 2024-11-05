@@ -1,0 +1,12 @@
+#!/bin/sh
+
+bun generate.ts 15 15 5 > balanced1.lp
+bun generate.ts 30 30 10 > balanced2.lp
+bun generate.ts 45 45 15 > balanced3.lp
+bun generate.ts 60 60 20 > balanced4.lp
+bun generate.ts 75 75 25 > balanced5.lp
+bun generate.ts 90 90 30 > balanced6.lp
+bun generate.ts 105 105 35 > balanced7.lp
+bun generate.ts 120 120 40 > balanced8.lp
+bun generate.ts 135 135 45 > balanced9.lp
+bun generate.ts 150 150 50 > balanced10.lp

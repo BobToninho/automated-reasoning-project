@@ -1,37 +1,37 @@
 #!/bin/sh
 
-/home/linuxbrew/.linuxbrew/bin/hyperfine --warmup 3 --runs 10 --export-json ./benchmarks/_generated_benchmark_auto.json --ignore-failure \
-  'clingo invaders.lp aliens1.lp --time-limit=300' \
-  'clingo invaders.lp aliens2.lp --time-limit=300' \
-  'clingo invaders.lp aliens3.lp --time-limit=300' \
-  'clingo invaders.lp aliens4.lp --time-limit=300' \
-  'clingo invaders.lp aliens5.lp --time-limit=300' \
-  'clingo invaders.lp aliens6.lp --time-limit=300' \
-  'clingo invaders.lp aliens7.lp --time-limit=300' \
-  'clingo invaders.lp aliens8.lp --time-limit=300' \
-  'clingo invaders.lp aliens9.lp --time-limit=300' \
-  'clingo invaders.lp aliens10.lp --time-limit=300'
+/home/linuxbrew/.linuxbrew/bin/hyperfine --warmup 3 --runs 10 --export-json ./benchmarks/_benchmark_balanced_auto.json --ignore-failure \
+  'clingo invaders.lp balanced1.lp --time-limit=300' \
+  'clingo invaders.lp balanced2.lp --time-limit=300' \
+  'clingo invaders.lp balanced3.lp --time-limit=300' \
+  'clingo invaders.lp balanced4.lp --time-limit=300' \
+  'clingo invaders.lp balanced5.lp --time-limit=300' \
+  'clingo invaders.lp balanced6.lp --time-limit=300' \
+  'clingo invaders.lp balanced7.lp --time-limit=300' \
+  'clingo invaders.lp balanced8.lp --time-limit=300' \
+  'clingo invaders.lp balanced9.lp --time-limit=300' \
+  'clingo invaders.lp balanced10.lp --time-limit=300'
 
-/home/linuxbrew/.linuxbrew/bin/hyperfine --warmup 3 --runs 10 --export-json ./benchmarks/_generated_benchmark_trendy.json --ignore-failure \
-  'clingo invaders.lp aliens1.lp --configuration=trendy --time-limit=300' \
-  'clingo invaders.lp aliens2.lp --configuration=trendy --time-limit=300' \
-  'clingo invaders.lp aliens3.lp --configuration=trendy --time-limit=300' \
-  'clingo invaders.lp aliens4.lp --configuration=trendy --time-limit=300' \
-  'clingo invaders.lp aliens5.lp --configuration=trendy --time-limit=300' \
-  'clingo invaders.lp aliens6.lp --configuration=trendy --time-limit=300' \
-  'clingo invaders.lp aliens7.lp --configuration=trendy --time-limit=300' \
-  'clingo invaders.lp aliens8.lp --configuration=trendy --time-limit=300' \
-  'clingo invaders.lp aliens9.lp --configuration=trendy --time-limit=300' \
-  'clingo invaders.lp aliens10.lp --configuration=trendy --time-limit=300'
+/home/linuxbrew/.linuxbrew/bin/hyperfine --warmup 3 --runs 10 --export-json ./benchmarks/_benchmark_balanced_trendy.json --ignore-failure \
+  'clingo invaders.lp balanced1.lp --configuration=trendy --time-limit=300' \
+  'clingo invaders.lp balanced2.lp --configuration=trendy --time-limit=300' \
+  'clingo invaders.lp balanced3.lp --configuration=trendy --time-limit=300' \
+  'clingo invaders.lp balanced4.lp --configuration=trendy --time-limit=300' \
+  'clingo invaders.lp balanced5.lp --configuration=trendy --time-limit=300' \
+  'clingo invaders.lp balanced6.lp --configuration=trendy --time-limit=300' \
+  'clingo invaders.lp balanced7.lp --configuration=trendy --time-limit=300' \
+  'clingo invaders.lp balanced8.lp --configuration=trendy --time-limit=300' \
+  'clingo invaders.lp balanced9.lp --configuration=trendy --time-limit=300' \
+  'clingo invaders.lp balanced10.lp --configuration=trendy --time-limit=300'
 
-/home/linuxbrew/.linuxbrew/bin/hyperfine --warmup 3 --runs 10 --export-json ./benchmarks/_generated_benchmark_jumpy.json --ignore-failure \
-  'clingo invaders.lp aliens1.lp --configuration=jumpy --time-limit=300' \
-  'clingo invaders.lp aliens2.lp --configuration=jumpy --time-limit=300' \
-  'clingo invaders.lp aliens3.lp --configuration=jumpy --time-limit=300' \
-  'clingo invaders.lp aliens4.lp --configuration=jumpy --time-limit=300' \
-  'clingo invaders.lp aliens5.lp --configuration=jumpy --time-limit=300' \
-  'clingo invaders.lp aliens6.lp --configuration=jumpy --time-limit=300' \
-  'clingo invaders.lp aliens7.lp --configuration=jumpy --time-limit=300' \
-  'clingo invaders.lp aliens8.lp --configuration=jumpy --time-limit=300' \
-  'clingo invaders.lp aliens9.lp --configuration=jumpy --time-limit=300' \
-  'clingo invaders.lp aliens10.lp --configuration=jumpy --time-limit=300'
+/home/linuxbrew/.linuxbrew/bin/hyperfine --warmup 3 --runs 10 --export-json ./benchmarks/_benchmark_balanced_jumpy.json --ignore-failure \
+  'clingo invaders.lp balanced1.lp --configuration=jumpy --time-limit=300' \
+  'clingo invaders.lp balanced2.lp --configuration=jumpy --time-limit=300' \
+  'clingo invaders.lp balanced3.lp --configuration=jumpy --time-limit=300' \
+  'clingo invaders.lp balanced4.lp --configuration=jumpy --time-limit=300' \
+  'clingo invaders.lp balanced5.lp --configuration=jumpy --time-limit=300' \
+  'clingo invaders.lp balanced6.lp --configuration=jumpy --time-limit=300' \
+  'clingo invaders.lp balanced7.lp --configuration=jumpy --time-limit=300' \
+  'clingo invaders.lp balanced8.lp --configuration=jumpy --time-limit=300' \
+  'clingo invaders.lp balanced9.lp --configuration=jumpy --time-limit=300' \
+  'clingo invaders.lp balanced10.lp --configuration=jumpy --time-limit=300'

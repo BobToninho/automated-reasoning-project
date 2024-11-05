@@ -1,0 +1,24 @@
+#!/bin/sh
+
+# trap '[ $? -eq 10 ] && echo "Everything ran fine!" || echo "Some test failed"' EXIT
+
+# echo "Running balanced1..."
+# clingo invaders.lp balanced1.lp --time-limit=300
+# echo "Running balanced2..."
+# clingo invaders.lp balanced2.lp --time-limit=300
+# echo "Running balanced3..."
+# clingo invaders.lp balanced3.lp --time-limit=300
+# echo "Running balanced4..."
+# clingo invaders.lp balanced4.lp --time-limit=300
+echo "Running balanced5..."
+clingo invaders.lp balanced5.lp --time-limit=300
+echo "Running balanced6..."
+clingo invaders.lp balanced6.lp --time-limit=300
+echo "Running balanced7..."
+clingo invaders.lp balanced7.lp --time-limit=300
+echo "Running balanced8..."
+clingo invaders.lp balanced8.lp --time-limit=300
+echo "Running balanced9..."
+clingo invaders.lp balanced9.lp --time-limit=300
+echo "Running balanced10..."
+clingo invaders.lp balanced10.lp --time-limit=300

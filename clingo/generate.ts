@@ -16,7 +16,9 @@ function main() {
   const x = args[0];
   const y = args[1];
   const numberOfAliens = args[2];
-  let output = `#const mx=${x}.
+  const t = args[3] ?? (numberOfAliens * 2);
+  let output = `#const t=${t}.
+#const mx=${x}.
 #const my=${y}.
 #const a=${numberOfAliens}.
 
