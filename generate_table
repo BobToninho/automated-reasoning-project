@@ -1,0 +1,4 @@
+#!/bin/sh -e
+
+python3 compare_latex.py clingo/benchmarks/_benchmark_balanced_auto.json clingo/benchmarks/_benchmark_balanced_jumpy.json clingo/benchmarks/_benchmark_balanced_trendy.json > compare.tex
+latexmk compare.tex
