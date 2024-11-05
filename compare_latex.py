@@ -124,11 +124,73 @@ def compare_benchmark_positions(json_files: List[str]) -> str:
     latex_output.append("\\end{document}")
     return "\n".join(latex_output)
 
+def compare_benchmark_positions2(json_files: List[str]) -> str:
+    """Compare commands at the same position across different benchmark files."""
+    # Load all benchmark results
+    benchmarks = []
+    for file_path in json_files:
+        with open(file_path) as f:
+            benchmarks.append(json.load(f))
+    # Get the number of commands in the first benchmark
+    num_commands = len(benchmarks[0]["results"])
+    latex_output = [
+        "\\documentclass{article}",
+        "\\usepackage{booktabs}",
+        "\\usepackage{tabularx}",
+        "\\usepackage[table]{xcolor}",
+        "\\begin{document}"
+    ]
+
+    latex_output.extend([
+        "\\begin{table}",
+        "\\begin{tabular}{|llrrrrrr|}",
+        "\\hline",
+        "Aliens & Configuration & Mean & Std Dev & Min & Max & Times faster & Percentage \\\\",
+        "\\hline"
+    ])
+    # Compare each command position
+    for pos in range(num_commands):
+        commands = [bench["results"][pos] for bench in benchmarks]
+
+        # Calculate stats for each run
+        first_mean = None
+        for i, cmd in enumerate(commands):
+            stats = calculate_stats(cmd["times"])
+            if first_mean is None:
+                first_mean = stats["mean"]
+                change = "1x"
+                change_perc = "baseline"
+            else:
+                change = calculate_relative_change(first_mean, stats["mean"])
+                change_perc = calculate_relative_change_percentage(first_mean, stats["mean"])
+            row = "{} & {} & {} & {} & {} & {} & {} & {} \\\\".format(
+                f'aliens{pos + 1}',
+                configurations[i + 1],
+                format_time(stats["mean"]),
+                format_time(stats["stddev"]),
+                format_time(stats["min"]),
+                format_time(stats["max"]),
+                change,
+                change_perc,
+            )
+            latex_output.append(row)
+        latex_output.extend([
+            "\\hline"
+        ])
+    latex_output.extend([
+        "\\end{tabular}",
+        "\\end{table}",
+        ""
+    ])
+    latex_output.append("\\end{document}")
+    return "\n".join(latex_output)
+
 def main():
     if len(sys.argv) < 2:
         print("Usage: python script.py benchmark1.json benchmark2.json benchmark3.json")
         sys.exit(1)
-    print(compare_benchmark_positions(sys.argv[1:]))
+    # print(compare_benchmark_positions(sys.argv[1:]))
+    print(compare_benchmark_positions2(sys.argv[1:]))
 
 if __name__ == "__main__":
     main()
