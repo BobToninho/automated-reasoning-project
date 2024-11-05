@@ -2,23 +2,44 @@
 
 trap '[ $? -eq 0 ] && echo "Everything ran fine!" || echo "Some test failed"' EXIT
 
-echo "Running aliens1..."
-minizinc.exe invaders.mzn aliens1.mzn --time-limit 300000 --solver org.chuffed.chuffed
-echo "Running aliens2..."
-minizinc.exe invaders.mzn aliens2.mzn --time-limit 300000 --solver org.chuffed.chuffed
-echo "Running aliens3..."
-minizinc.exe invaders.mzn aliens3.mzn --time-limit 300000 --solver org.chuffed.chuffed
-echo "Running aliens4..."
-minizinc.exe invaders.mzn aliens4.mzn --time-limit 300000 --solver org.chuffed.chuffed
-echo "Running aliens5..."
-minizinc.exe invaders.mzn aliens5.mzn --time-limit 300000 --solver org.chuffed.chuffed
-echo "Running aliens6..."
-minizinc.exe invaders.mzn aliens6.mzn --time-limit 300000 --solver org.chuffed.chuffed
-echo "Running aliens7..."
-minizinc.exe invaders.mzn aliens7.mzn --time-limit 300000 --solver org.chuffed.chuffed
-echo "Running aliens8..."
-minizinc.exe invaders.mzn aliens8.mzn --time-limit 300000 --solver org.chuffed.chuffed
-echo "Running aliens9..."
-minizinc.exe invaders.mzn aliens9.mzn --time-limit 300000 --solver org.chuffed.chuffed
-echo "Running aliens10..."
-minizinc.exe invaders.mzn aliens10.mzn --time-limit 300000 --solver org.chuffed.chuffed
+# echo "Running aliens1..."
+# minizinc.exe invaders.mzn aliens1.mzn --time-limit 300000 --solver org.chuffed.chuffed
+# echo "Running aliens2..."
+# minizinc.exe invaders.mzn aliens2.mzn --time-limit 300000 --solver org.chuffed.chuffed
+# echo "Running aliens3..."
+# minizinc.exe invaders.mzn aliens3.mzn --time-limit 300000 --solver org.chuffed.chuffed
+# echo "Running aliens4..."
+# minizinc.exe invaders.mzn aliens4.mzn --time-limit 300000 --solver org.chuffed.chuffed
+# echo "Running aliens5..."
+# minizinc.exe invaders.mzn aliens5.mzn --time-limit 300000 --solver org.chuffed.chuffed
+# echo "Running aliens6..."
+# minizinc.exe invaders.mzn aliens6.mzn --time-limit 300000 --solver org.chuffed.chuffed
+# echo "Running aliens7..."
+# minizinc.exe invaders.mzn aliens7.mzn --time-limit 300000 --solver org.chuffed.chuffed
+# echo "Running aliens8..."
+# minizinc.exe invaders.mzn aliens8.mzn --time-limit 300000 --solver org.chuffed.chuffed
+# echo "Running aliens9..."
+# minizinc.exe invaders.mzn aliens9.mzn --time-limit 300000 --solver org.chuffed.chuffed
+# echo "Running aliens10..."
+# minizinc.exe invaders.mzn aliens10.mzn --time-limit 300000 --solver org.chuffed.chuffed
+
+echo "Running balanced1..."
+minizinc.exe invaders.mzn balanced1.mzn --time-limit 300000
+echo "Running balanced2..."
+minizinc.exe invaders.mzn balanced2.mzn --time-limit 300000
+echo "Running balanced3..."
+minizinc.exe invaders.mzn balanced3.mzn --time-limit 300000
+echo "Running balanced4..."
+minizinc.exe invaders.mzn balanced4.mzn --time-limit 300000
+echo "Running balanced5..."
+minizinc.exe invaders.mzn balanced5.mzn --time-limit 300000
+echo "Running balanced6..."
+minizinc.exe invaders.mzn balanced6.mzn --time-limit 300000
+echo "Running balanced7..."
+minizinc.exe invaders.mzn balanced7.mzn --time-limit 300000
+echo "Running balanced8..."
+minizinc.exe invaders.mzn balanced8.mzn --time-limit 300000
+echo "Running balanced9..."
+minizinc.exe invaders.mzn balanced9.mzn --time-limit 300000
+echo "Running balanced10..."
+minizinc.exe invaders.mzn balanced10.mzn --time-limit 300000
