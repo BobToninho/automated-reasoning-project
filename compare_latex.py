@@ -158,7 +158,7 @@ def compare_benchmark_positions2(json_files: List[str]) -> str:
             stats = calculate_stats(cmd["times"])
             if first_mean is None:
                 first_mean = stats["mean"]
-                change = "1x"
+                change = "1.0x"
                 change_perc = "baseline"
             else:
                 change = calculate_relative_change(first_mean, stats["mean"])
