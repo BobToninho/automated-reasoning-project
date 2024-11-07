@@ -4,9 +4,8 @@ from typing import Dict, List, Any
 from statistics import mean, stdev
 
 configurations = {
-    1: 'auto',
-    2: 'jumpy',
-    3: 'trendy',
+    1: 'default',
+    2: 'chuffed',
 }
 
 def format_time(time_in_seconds: float) -> str:

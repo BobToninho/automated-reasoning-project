@@ -304,6 +304,48 @@ As clingo is generally used for ASP solving and Minizinc is used for CSP solving
 
 The problem proposed for this project is a \textit{planning} problem, requiring adaptation from the planning domain to the ASP or CSP domain.
 
+\begin{table}[h]
+  \centering
+  \begin{tabular}{|llrrrrrr|}
+    \hline
+    Aliens & Solver & Mean & Std Dev & Min & Max & Times faster & Percentage \\
+    \hline
+    aliens1 & default & 0.72~s & 0.034~s & 0.68~s & 0.8~s & 1.0x & baseline \\
+    aliens1 & chuffed & 0.79~s & 0.048~s & 0.74~s & 0.86~s & 0.9x & +9.94\% \\
+    \hline
+    aliens2 & default & 129.84~s & 3.59~s & 123.64~s & 136.12~s & 1.0x & baseline \\
+    aliens2 & chuffed & 1.22~s & 0.041~s & 1.17~s & 1.28~s & 106.8x & -99.06\% \\
+    \hline
+    aliens3 & default & 300.58~s & 0.027~s & 300.55~s & 300.64~s & 1.0x & baseline \\
+    aliens3 & chuffed & 300.77~s & 0.041~s & 300.73~s & 300.86~s & 1.0x & +0.06\% \\
+    \hline
+    aliens4 & default & 300.80~s & 0.025~s & 300.75~s & 300.84~s & 1.0x & baseline \\
+    aliens4 & chuffed & 301.44~s & 0.042~s & 301.40~s & 301.54~s & 1.0x & +0.22\% \\
+    \hline
+    aliens5 & default & 301.09~s & 0.036~s & 301.02~s & 301.13~s & 1.0x & baseline \\
+    aliens5 & chuffed & 301.60~s & 0.024~s & 301.55~s & 301.65~s & 1.0x & +0.17\% \\
+    \hline
+    aliens6 & default & 301.37~s & 0.02~s & 301.34~s & 301.41~s & 1.0x & baseline \\
+    aliens6 & chuffed & 301.70~s & 0.027~s & 301.65~s & 301.74~s & 1.0x & +0.11\% \\
+    \hline
+    aliens7 & default & 301.66~s & 0.038~s & 301.60~s & 301.72~s & 1.0x & baseline \\
+    aliens7 & chuffed & 301.86~s & 0.031~s & 301.81~s & 301.91~s & 1.0x & +0.07\% \\
+    \hline
+    aliens8 & default & 301.62~s & 0.065~s & 301.57~s & 301.79~s & 1.0x & baseline \\
+    aliens8 & chuffed & 302.06~s & 0.044~s & 302.01~s & 302.15~s & 1.0x & +0.15\% \\
+    \hline
+    aliens9 & default & 301.97~s & 0.063~s & 301.89~s & 302.08~s & 1.0x & baseline \\
+    aliens9 & chuffed & 302.31~s & 0.032~s & 302.27~s & 302.38~s & 1.0x & +0.11\% \\
+    \hline
+    aliens10 & default & 302.41~s & 0.065~s & 302.33~s & 302.57~s & 1.0x & baseline \\
+    aliens10 & chuffed & 303.61~s & 0.89~s & 302.86~s & 305.96~s & 1.0x & +0.40\% \\
+
+    \hline
+  \end{tabular}
+  \caption{Complete minizinc benchmark results}
+  \label{table:minizinc-bench-comparative}
+\end{table}
+
 \section{Future work}
 Several implementations can be done to speed up the solving of the models.
 Both the clingo and Minizinc models do not have constraints on how the cannon should move or shoot.
