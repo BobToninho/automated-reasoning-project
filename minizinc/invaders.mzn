@@ -29,17 +29,19 @@ constraint forall(j in ALIENS) (
 % Move effect
 constraint forall(j in ALIENS) (
   exists(i in TIME) (
-    move_x[i] == aliens_x_initial[j]
+    % putting the 2 clauses together: the cannon moves to an alien's position
+    % it can be considered an effect of the move action
+    move_x[i] == aliens_x_initial[j] % precondition/action - not clear here
     /\
-    cannon_x[i+1] == move_x[i]
+    cannon_x[i+1] == move_x[i] % action
   )
 );
 % Shoot effect
 constraint forall(j in ALIENS) (
   exists(i in TIME) (
-    shoot[i] == j
+    shoot[i] == j % action
     /\
-    cannon_x[i+1] == cannon_x[i]
+    cannon_x[i+1] == cannon_x[i] % effect
   )
 );
 % At any given time step the cannon either moves or shoots
@@ -51,13 +53,13 @@ constraint forall(i in TIME, j in ALIENS) (
 % The cannon moves where the living aliens are
 constraint forall(j in ALIENS) (
   exists(i in TIME) (
-    aliens_dead[j,i+1]
+    aliens_dead[j,i+1] % effect
     /\
-    shoot[i] = j
+    shoot[i] = j % action
     /\
-    cannon_x[i] == aliens_x_initial[j]
+    cannon_x[i] == aliens_x_initial[j] % precondition
     /\
-    not aliens_dead[j,i]
+    not aliens_dead[j,i] % precondition
   )
 );
 
@@ -74,6 +76,7 @@ constraint forall(i in TIME, j in ALIENS) (
 % Living aliens decrease their y-axe position each time step
 constraint forall(i in TIME, j in ALIENS) (
   (aliens_dead[j,i] == false) -> (aliens_y[j,i+1] = max(1, aliens_y[j,i] - 1))
+  /* (aliens_dead[j,i] == false) -> (aliens_y[j,i+1] = aliens_y[j,i] - 1) */
 );
 
 

@@ -1,5 +1,6 @@
 \documentclass[11pt]{article}
 
+\usepackage{amsmath}
 \usepackage{sectsty}
 \usepackage{graphicx}
 \usepackage{hyperref}
@@ -37,7 +38,8 @@
 \section{Problem statement}
 
 Delle astronavi aliene sono disposte in modo complanare in modo che possiamo immaginarle nel rettangolo cartesiano (0,0), ($max_x$,0), ($max_x$,$max_y$), (0,$max_y$).
-$max_x$ e $max_y$ sono dati di input e vengono anche date le coordinate (intere) delle astronavi presenti. Supponiamo non siano già ad ordinata 0 (ovvero sulla terra).
+$max_x$ e $max_y$ sono dati di input e vengono anche date le coordinate (intere) delle astronavi presenti.
+Supponiamo non siano già ad ordinata 0 (ovvero sulla terra).
 
 Ci accorgiamo che ad ogni istante di tempo ogni astronave scende unitariamente (ciascuna componente $y$ cala di 1).
 
@@ -54,82 +56,103 @@ Vogliamo codificarlo e fare risolvere al CP solver o al ASP solver.
 \section{Clingo model}
 
 In the first few lines we find the domain predicates.
-There are a couple of things to note.
-The time/1 predicate started from 0.
-This is to indiccate the initial state of the world and means that the model will have t+1 time steps.
-The x and y axis also start from 0.
-This is because the grid is a cartesian rectangle.
-The cannon predicate is arguably the most odd: its' written such that the model can have more than one cannon, but practically the model never takes into account this eventuality.
-The cannon predicate comes in this shape in order to be able to use a variable C in further predicates.
+The time/1 predicate starts from 0.
+This is to indicate the initial state of the world and means that the model will use t+1 time steps.
+The cannon predicate is arguably is written such that the model can have more than one cannon, but practically---for this project---the model never takes into account more than one cannon.
+The sole purpose of this oddity is to allow the use of the cannon predicate with a variable \texttt{C}, like so: \texttt{cannon(C)}.
 
-The alien/1 predicate comes with an identifier, which is simply an integer counter strarting from 1.
+The alien/1 predicate comes with an identifier, which is an counter starting from 1.
 
-The \texttt{1 { ...  } 1} line is a core part of the model.
-it states that for each time step except for the last one the cannon either moes to an X or shots an alien.
-The last time step is left our because of how the shoot predicate/action is defined further on: when the cannon shoots, an aliens is considered dead in the next time step.
+Line 11---with the choice rule---is a core part of the model.
+It states that for each time step, except for the last one, the cannon either moves to a different position on the grid or shoots to an alien.
+The last time step is left out because of how the \textit{shoot} action is defined further on: when the cannon shoots, an aliens is considered dead only in the next time step.
 
-The ``initial state'' predicate uses the at/4 predicate by positioning the cannon at the coordinates 0,0 as required in the problem statement.
+The at/4 predicate is used to define the initial state of the model. It positions the cannon at the coordinates (0,0) as required in the problem statement.
 
-The at/4 predicate is also a core part of the model.
-At any fiven time step, it represents the position on the grid of the cannon or of an alien.
+The at/4 predicate is a core part of the model as well.
+It represents the position on the grid of the cannon or of an alien, at any given time step.
 
-The model contains the move, shoot actions.
-The move/3 action represents only the movement of the cannon.
-The requirement of each alien decreasing its y coordinate at every time step is met via an inertia rule.
+The model contains the \textit{move} and the \textit{shoot} actions: the former represents the movement of the cannon on the $x$ axis, while the latter represents the cannon shooting and killing an alien.
+The precondition for the \textit{shoot} action is to have the cannon and the alien at the same $x$ coordinate.
+There is no \textit{move} action for the alien because the requirement of aliens decreasing their $y$ coordinate at every time step is met via an inertia rule.
 
-The shoot/3 action involves both the cannon and an alien.
-The cannon shoots an alien A if at time T their x coordinates are equal.
-
-Additionally, we are enforcing the fact that if the cannon shoots, it will stay in the same position in the next time step
+A postcondition of the \textit{shoot} action is that the cannon does not change position in the same time step.
+This meets one of the requirements of the problem.
 
 The inertia rules involve aliens.
-If, at a ceratin point, an alien is dead it will remain dead and it will preserve its position on the grid.
-If an alien is not dead, its y coordinate will decrease at each time step.
+If an alien dies, it will remain dead and it will preserve its position on the grid.
+If an alien is not dead, its $y$ coordinate will decrement by 1 at each time step.
 
-The constraints avoid the model to accept a solution where the cannon has a y coordinate different than zero---at each time step.
-They also avoid a solution where an alien reaches y=0, which would violate the requirements in the problem statement.
+Lastly, the constraints avoid the model to accept a solution where the cannon has a y coordinate different than zero---at each time step.
+Additionally, they avoid a solution where an alien reaches $y = 0$, which would violate the requirements in the problem statement.
 
 
 \section{Minizinc model}
 
-In the Minizinc model, we define upfront the variables we need the model to assign values to.
+In the Minizinc model, we define upfront the variables we need the solver to assign values to.
+
 The model represents time steps as array indices.
-Like in the clingo model, the move\_x and the shoot variables span in t time steps, compared to t+1 timesteps of the other decision variables.
+Like in the clingo model, the \texttt{move\_x} and the \texttt{shoot} variables span in \texttt{t} time steps, compared to t+1 time steps of the other decision variables.
 
-The plannin concepts of precondition and effect are represented by a conjunction.
+% Preconditions and effects are represented by a logical conjunction.
 
-The concept of action is represented by a quantified boolean formula (QBF): <formula> with A being the set of aliens and T being 0..t timesteps.
-The actions are encoded as constraint in the model.
+Actions are represented by the following first-order logic formula:
 
-In the model we also find a constraint that enforces, foreach time setep, the move\_x or the shoot actions to not be in their null state.
+$$
+\forall a \in L \; \exists t \in \{0,\ldots,T_{max}-1\} \; (P \land A \land E)
+$$ 
 
-Inertia rules are represented by a QBF of the form: <formula>.
-The idea is to have a if-else-like structure of an imperative programming language.
+Where $L$ is the set of a\textbf{l}iens, $T_{max}$ is the maximum number of time steps, and P, A, and E---representing \textbf{p}reconditions, \textbf{a}ctions and \textbf{e}ffects---are first-order logic formulas constructed as follows: 
 
-Finally, the only constraint in the model prohibits the cannon to shoot to teh same alien twice.
-This can probably be removed by adding a precondition to the shoot action.
 
+% \top because there can be no precondition -> it is always true in that case
+$$
+P ::\equiv \top \mid \neg isDead(a,t) \mid equals(cannonX(t),alienX(t)) 
+$$
+$$
+A ::\equiv shoot(a,t) \mid moveX(t) 
+$$
+$$
+E ::\equiv isDead(a,t) \mid equals(cannonX(t),cannonX(t+1)) \mid equals(cannonX(t),alienX(t)) 
+$$
+
+$moveX$ returns the $x$ coordinate where the cannon will move on the next time step. 
+This is a decision variable that the solver has to find.
+
+In the model we also find a constraint that enforces one of the two actions to be present for each time step.
+
+Inertia rules are represented by the following first-order logic formulas:
+
+$$
+\forall t \in T \; \forall a \in L \; (isDead(a,t) \implies isDead(a,t+1) \land equals(alienY(t),alienY(t+1)))
+$$
+$$
+\forall t \in T \; \forall a \in L \; (\neg isDead(a) \implies equals(alienY(t+1),alienY(t)-1)
+$$
+
+Where $T$ is $\{0,\ldots,T_{max}-1\}$.
+
+Finally, the only global constraint in the model prohibits the cannon to shoot to the same alien twice.
 
 \section{Benchmarks}
 
-\subsection{Instance generation}
-Both clingo and minizinc benchmarks were run on 10 instances of aliens.
+\subsection{Clingo instances}
+Both clingo and Minizinc models benchmarks were run on 10 problem instances.
 The instances were generated with the program \texttt{generate.ts} (included in the zip file) that is run with the command
 
 \begin{verbatim}
 bun generate.ts <x> <y> <numberOfAliens>
 \end{verbatim}
 
-It uses \href{https://bun.sh/}{bun}, a modern TypeScript runtime, but can be ran with node.js as well with some additional work.
-The program contains 3 inputs: \texttt{x}, \texttt{y} and \texttt{numberOfAliens}.
+(It uses \href{https://bun.sh/}{bun}, a modern TypeScript runtime, but can be ran with node.js as well with some additional work.)
 
-The $y$ coordinates of the aliens are generated by taking the input \texttt{y} and decreasing it for each alien present in the instance, obtaining a sequence that starts at $y - 1$ and ends at $y - numberOfAliens$.
+The program contains 3 inputs: \texttt{x}, \texttt{y} and \texttt{numberOfAliens}.
+The $y$ coordinates of the aliens are generated by taking the input \texttt{y} and decrementing it for each alien present in the instance, obtaining a sequence that starts at $y - 1$ and ends at $y - numberOfAliens$.
 The $x$ coordinates of the aliens are randomly generated between 0 and the input \texttt{x}.
 This method of generating the coordinates ensures that no aliens are in the same position on the grid.
 
-It is worth noting that if the input \texttt{y} is smaller than $2*numberOfAliens$, the model will most likely be unsatisfiable because the cannon won't be able to kill all the aliens before they reach the $0$ coordinate.
-The combination of shoot and move takes 2 time steps.
-So, if there are 50 aliens all with different x, 100 time steps are required for the cannon to kill all the aliens before they reach 0.
+It is worth noting that if the input \texttt{y} is smaller than $2*numberOfAliens$, the model will most likely be unsatisfiable because the cannon won't be able to kill all the aliens before they reach the $0$ coordinate  because the combination of shoot and move takes 2 time steps.
+For example, if there are 50 aliens, all with different x, then 100 time steps are required for the cannon to kill all the aliens in time.
 To enable that, the aliens need to be in a high-enough $y$ coordinate to not reach 0.
 
 \subsection{Minizinc instances}
@@ -139,7 +162,7 @@ A combination of a shell script, a TypeScript script and a manual step are used 
 The two scripts can be found in the zip file and are named \texttt{minizinc/convert} and \texttt{minizinc/convert.ts} respectively.
 The \texttt{convert} script creates 10 files names \texttt{aliens.1.mzn}, \texttt{aliens2.mzn}, etc.
 The files contain two arrays which values are extracted from \texttt{clingo/aliens1.lp}, \texttt{clingo/aliens2.lp}, etc.
-The manual step consists in adding four integer parameters to the files.
+The manual step consists in adding four integer parameters to the generated files.
 The four integer parameters are: \texttt{t}, \texttt{mx} ($max_x$), \texttt{my} ($max_y$), and \texttt{a} (number of aliens).
 
 \subsection{Benchmark setup}
@@ -148,20 +171,20 @@ Every instance is ran 10 times with 3 warmup runs.
 The clingo model was ran with three different configurations: \textit{auto}, \textit{jumpy}, and \textit{trendy}.
 The Minizinc model was ran with two different solvers: default, and \textit{chuffed}.
 
-The results---in JSON format---are stored in the \texttt{clingo/benchmarks} and \texttt{minizinc/benchmarks}.
+The results---in JSON format---are stored in \texttt{clingo/benchmarks} and \texttt{minizinc/benchmarks}.
 
 \subsection{Clingo model}
 
 In \autoref{fig:clingo-bench-comparative} a visualization of the results is presented.
-On the x axis there are the 10 aliens files, while on the y axis the runtime of the benchmarks.
+On the x axis there are the 10 aliens files, while on the y axis there is running time.
 There are 3 bars for each file representing the 3 different configurations.
-In \autoref{table:clingo-bench-comparative} the full benchmark results is presented.
+In \autoref{table:clingo-bench-comparative} the full benchmark results are presented.
 
 The \textit{trendy} configuration is the fastest for this problem.
 The performance measured on \texttt{aliens8} suggests that \textit{trendy} could be faster when using instances of bigger size.
 
 It is interesting to note how \texttt{aliens3} reaches the timeout with the default configuration, while with \textit{jumpy} and \textit{trendy} the resolution takes around 1 second.
-Here's the breakdown of what the configurations are setting (generated by running \texttt{clingo --help=3}):
+This is the breakdown of the flags that the configurations are setting (generated by running \texttt{clingo --help=3}):
 
 \begin{verbatim}
 [trendy]:
@@ -177,11 +200,11 @@ Here's the breakdown of what the configurations are setting (generated by runnin
  --update-lbd=glucose --strengthen=recursive --otfs=2 --save-p=70
 \end{verbatim}
 
-From these exaustive lists of command line flags, we can extract simply \texttt{--sat-p=2} to get a significative performance improvement.
+From these exhaustive lists of command line flags, we can extract simply \texttt{--sat-p=2} to get a significant running time speedup compared to the \textit{auto} configuration.
 The flag enables ``SAT preprocessing'', more precisely ``SatELite-like'' preprocessing \cite{clingo-guide}.
 SAT preprocessing alone shows a 13-fold improvement, as presented in \autoref{table:aliens3-sat-p}.
 
-\begin{table}
+\begin{table}[h]
   \centering
   \begin{tabular}{|llrrrrrr|}
     \hline
@@ -207,28 +230,46 @@ With \texttt{aliens8} both configurations run well under the timeout, with \text
   \label{fig:clingo-bench-comparative}
 \end{figure}
 
+In \autoref{table:clingo-bench-instances} the list of files is presented together with their respective inputs.
 
-% \begin{table}[h]
-%   \centering
-%   \begin{tabular}{|c|c|c|c|c|}
-%     \hline
-%     File & Number of aliens & $max_x$ & $max_y$ & $t$ \\
-%     \hline
-%     aliens1.lp & 3 & 9 & 9 & 5 \\
-%     aliens2.lp & 9 & 10 & 21 & 18 \\
-%     aliens3.lp & 15 & 15 & 40 & 28 \\
-%     aliens4.lp & 20 & 20 & 50 & 42 \\
-%     aliens5.lp & 25 & 15 & 75 & 44 \\
-%     aliens6.lp & 30 & 50 & 80 & 58 \\
-%     aliens7.lp & 35 & 30 & 100 & 67 \\
-%     aliens8.lp & 40 & 100 & 100 & 82 \\
-%     aliens9.lp & 50 & 20 & 110 & 90 \\
-%     aliens10.lp & 100 & 70 & 250 & 202 \\
-%     \hline
-%   \end{tabular}
-%   \caption{Instances used for benchmarking the model}
-%   \label{table:clingo-bench-instances}
-% \end{table}
+
+\subsection{Minizinc model}
+
+In \autoref{fig:minizinc-bench-comparative} a visualization of the results is presented.
+The \texttt{org.chuffed.chuffed} solver has a huge benefit with \texttt{aliens2}.
+This advantage vanishes starting with \texttt{aliens3}.
+From \texttt{aliens3} to \texttt{aliens10} the model, ran with the default solver and with \texttt{org.chuffed.chuffed}, always reaches the timeout.
+In \autoref{table:minizinc-bench-comparative} the full benchmark results are presented.
+
+This means that the model solves the problem, but in an inefficient way.
+Especially compared to the clingo model.
+
+In \autoref{table:minizinc-bench-instances} the list of files is presented together with their respective inputs.
+
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=\textwidth]{./minizinc/benchmarks/balanced_comparative.png}
+  \caption{Comparing minizinc benchmark results}
+  \label{fig:minizinc-bench-comparative}
+\end{figure}
+
+\section{Conclusion}
+% The clingo and the Minizinc model are similar in terms of clauses and constraints.
+% The difference of results between the benchmark runs is due to the default behaviours of the two programs.
+% As clingo is generally used for ASP solving and Minizinc is used for CSP solving, the scope of the programs is different.
+
+% The problem proposed for this project is a \textit{planning} problem, requiring adaptation from the planning domain to the ASP or CSP domain.
+
+The clingo model performs better than the clingo model, especially when the latter is ran with the \textit{trendy} configuration.
+Some improvements can be done to speed up the solving of the models.
+Both the clingo and Minizinc models do not have constraints on how the cannon should move or shoot.
+The cannon can be constrained to move to the closest alien or to shoot to all the aliens in the same $x$ coordinate, therefore reducing the search space and solving times.
+
+\printbibliography
+
+\newpage
+\section{Appendix: tables}
 
 \begin{table}[h]
   \centering
@@ -281,28 +322,27 @@ With \texttt{aliens8} both configurations run well under the timeout, with \text
   \label{table:clingo-bench-comparative}
 \end{table}
 
-\subsection{Minizinc model}
-
-The \texttt{org.chuffed.chuffed} solver has a huge benefit in \texttt{aliens2}.
-This advantage vanishes starting with \texttt{aliens3}.
-From \texttt{aliens3} to \texttt{aliens10} the model, ran with the default solver and with \texttt{org.chuffed.chuffed}, always reaches the timeout.
-
-This means that the model solves the problem, but there's room for improvement.
-
-
-\begin{figure}[h]
+\begin{table}[h]
   \centering
-  \includegraphics[width=\textwidth]{./minizinc/benchmarks/balanced_comparative.png}
-  \caption{Comparing minizinc benchmark results}
-  \label{fig:minizinc-bench-comparative}
-\end{figure}
-
-\section{Conclusion}
-The clingo and the minizinc model are similar in terms of clauses and constraints.
-The difference of results between the benchmark runs is due to the default behaviours of the two programs.
-As clingo is generally used for ASP solving and Minizinc is used for CSP solving, the scope of the programs is different.
-
-The problem proposed for this project is a \textit{planning} problem, requiring adaptation from the planning domain to the ASP or CSP domain.
+  \begin{tabular}{|c|c|c|c|c|}
+    \hline
+    File & Number of aliens & $max_x$ & $max_y$ & $t$ \\
+    \hline
+    aliens1.lp & 10 & 15 & 15 & 5 \\
+    aliens2.lp & 20 & 30 & 30 & 10 \\
+    aliens3.lp & 30 & 45 & 45 & 15 \\
+    aliens4.lp & 40 & 60 & 60 & 20 \\
+    aliens5.lp & 50 & 75 & 75 & 25 \\
+    aliens6.lp & 60 & 90 & 90 & 30 \\
+    aliens7.lp & 70 & 105 & 105 & 35 \\
+    aliens8.lp & 80 & 120 & 120 & 40 \\
+    aliens9.lp & 90 & 135 & 135 & 45 \\
+    aliens10.lp & 100 & 150 & 150 & 50 \\
+    \hline
+  \end{tabular}
+  \caption{Instances used for benchmarking the clingo model}
+  \label{table:clingo-bench-instances}
+\end{table}
 
 \begin{table}[h]
   \centering
@@ -342,16 +382,33 @@ The problem proposed for this project is a \textit{planning} problem, requiring 
 
     \hline
   \end{tabular}
-  \caption{Complete minizinc benchmark results}
+  \caption{Complete Minizinc benchmark results}
   \label{table:minizinc-bench-comparative}
 \end{table}
 
-\section{Future work}
-Several implementations can be done to speed up the solving of the models.
-Both the clingo and Minizinc models do not have constraints on how the cannon should move or shoot.
-The cannon can be constrained to move to the closest alien or to shoot to all the aliens in the same $x$ coordinate as where the cannon is at a specific time step.
+\begin{table}[h]
+  \centering
+  \begin{tabular}{|c|c|c|c|c|}
+    \hline
+    File & Number of aliens & $max_x$ & $max_y$ & $t$ \\
+    \hline
+    aliens1.lp & 10 & 15 & 16 & 5 \\
+    aliens2.lp & 20 & 30 & 31 & 10 \\
+    aliens3.lp & 30 & 45 & 46 & 15 \\
+    aliens4.lp & 40 & 60 & 61 & 20 \\
+    aliens5.lp & 50 & 75 & 76 & 25 \\
+    aliens6.lp & 60 & 90 & 91 & 30 \\
+    aliens7.lp & 70 & 105 & 106 & 35 \\
+    aliens8.lp & 80 & 120 & 121 & 40 \\
+    aliens9.lp & 90 & 135 & 136 & 45 \\
+    aliens10.lp & 100 & 150 & 151 & 50 \\
+    \hline
+  \end{tabular}
+  \caption{Instances used for benchmarking the Minizinc model}
+  \label{table:minizinc-bench-instances}
+\end{table}
 
 
-\printbibliography
+
 
 \end{document}
