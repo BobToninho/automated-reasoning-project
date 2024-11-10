@@ -1,7 +1,7 @@
 {
   "results": [
     {
-      "command": "clingo invaders.lp balanced3.lp --time-limit=300 --sat-p",
+      "command": "clingo invaders.lp aliens3.lp --time-limit=300 --sat-p",
       "mean": 23.064600679040005,
       "stddev": 0.9944038193406415,
       "median": 22.90406699034,

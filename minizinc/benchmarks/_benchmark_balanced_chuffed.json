@@ -1,7 +1,7 @@
 {
   "results": [
     {
-      "command": "minizinc.exe invaders.mzn balanced1.mzn --time-limit 300000 --solver org.chuffed.chuffed",
+      "command": "minizinc.exe invaders.mzn aliens1.mzn --time-limit 300000 --solver org.chuffed.chuffed",
       "mean": 0.78951414232,
       "stddev": 0.04757240188108999,
       "median": 0.78317292492,
@@ -35,7 +35,7 @@
       ]
     },
     {
-      "command": "minizinc.exe invaders.mzn balanced2.mzn --time-limit 300000 --solver org.chuffed.chuffed",
+      "command": "minizinc.exe invaders.mzn aliens2.mzn --time-limit 300000 --solver org.chuffed.chuffed",
       "mean": 1.2153138296200001,
       "stddev": 0.04072823118690129,
       "median": 1.21547276742,
@@ -69,7 +69,7 @@
       ]
     },
     {
-      "command": "minizinc.exe invaders.mzn balanced3.mzn --time-limit 300000 --solver org.chuffed.chuffed",
+      "command": "minizinc.exe invaders.mzn aliens3.mzn --time-limit 300000 --solver org.chuffed.chuffed",
       "mean": 300.76523436992,
       "stddev": 0.040972502951291075,
       "median": 300.74868628842,
@@ -103,7 +103,7 @@
       ]
     },
     {
-      "command": "minizinc.exe invaders.mzn balanced4.mzn --time-limit 300000 --solver org.chuffed.chuffed",
+      "command": "minizinc.exe invaders.mzn aliens4.mzn --time-limit 300000 --solver org.chuffed.chuffed",
       "mean": 301.44468056172,
       "stddev": 0.041939569459759275,
       "median": 301.42863694442,
@@ -137,7 +137,7 @@
       ]
     },
     {
-      "command": "minizinc.exe invaders.mzn balanced5.mzn --time-limit 300000 --solver org.chuffed.chuffed",
+      "command": "minizinc.exe invaders.mzn aliens5.mzn --time-limit 300000 --solver org.chuffed.chuffed",
       "mean": 301.60093257321995,
       "stddev": 0.024476828030247054,
       "median": 301.60123147942,
@@ -171,7 +171,7 @@
       ]
     },
     {
-      "command": "minizinc.exe invaders.mzn balanced6.mzn --time-limit 300000 --solver org.chuffed.chuffed",
+      "command": "minizinc.exe invaders.mzn aliens6.mzn --time-limit 300000 --solver org.chuffed.chuffed",
       "mean": 301.69508654362,
       "stddev": 0.02656733978594018,
       "median": 301.69729994592,
@@ -205,7 +205,7 @@
       ]
     },
     {
-      "command": "minizinc.exe invaders.mzn balanced7.mzn --time-limit 300000 --solver org.chuffed.chuffed",
+      "command": "minizinc.exe invaders.mzn aliens7.mzn --time-limit 300000 --solver org.chuffed.chuffed",
       "mean": 301.86120160062,
       "stddev": 0.031063084998846774,
       "median": 301.86112866642,
@@ -239,7 +239,7 @@
       ]
     },
     {
-      "command": "minizinc.exe invaders.mzn balanced8.mzn --time-limit 300000 --solver org.chuffed.chuffed",
+      "command": "minizinc.exe invaders.mzn aliens8.mzn --time-limit 300000 --solver org.chuffed.chuffed",
       "mean": 302.06374738272,
       "stddev": 0.04356516912473128,
       "median": 302.06368921892,
@@ -273,7 +273,7 @@
       ]
     },
     {
-      "command": "minizinc.exe invaders.mzn balanced9.mzn --time-limit 300000 --solver org.chuffed.chuffed",
+      "command": "minizinc.exe invaders.mzn aliens9.mzn --time-limit 300000 --solver org.chuffed.chuffed",
       "mean": 302.30735578822,
       "stddev": 0.031884933892797486,
       "median": 302.30090155441997,
@@ -307,7 +307,7 @@
       ]
     },
     {
-      "command": "minizinc.exe invaders.mzn balanced10.mzn --time-limit 300000 --solver org.chuffed.chuffed",
+      "command": "minizinc.exe invaders.mzn aliens10.mzn --time-limit 300000 --solver org.chuffed.chuffed",
       "mean": 303.61499615712,
       "stddev": 0.8877263684460206,
       "median": 303.47744483522,

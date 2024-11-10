@@ -1,7 +1,7 @@
 {
   "results": [
     {
-      "command": "clingo invaders.lp balanced1.lp --configuration=jumpy --time-limit=300",
+      "command": "clingo invaders.lp aliens1.lp --configuration=jumpy --time-limit=300",
       "mean": 0.017817131640000004,
       "stddev": 0.0016425705036272368,
       "median": 0.01760773444,
@@ -35,7 +35,7 @@
       ]
     },
     {
-      "command": "clingo invaders.lp balanced2.lp --configuration=jumpy --time-limit=300",
+      "command": "clingo invaders.lp aliens2.lp --configuration=jumpy --time-limit=300",
       "mean": 0.20734813654,
       "stddev": 0.00929789480746995,
       "median": 0.20654309194,
@@ -69,7 +69,7 @@
       ]
     },
     {
-      "command": "clingo invaders.lp balanced3.lp --configuration=jumpy --time-limit=300",
+      "command": "clingo invaders.lp aliens3.lp --configuration=jumpy --time-limit=300",
       "mean": 1.15276213394,
       "stddev": 0.043769137691420254,
       "median": 1.14188159944,
@@ -103,7 +103,7 @@
       ]
     },
     {
-      "command": "clingo invaders.lp balanced4.lp --configuration=jumpy --time-limit=300",
+      "command": "clingo invaders.lp aliens4.lp --configuration=jumpy --time-limit=300",
       "mean": 2.5129550457399996,
       "stddev": 0.025990307606398096,
       "median": 2.51671811994,
@@ -137,7 +137,7 @@
       ]
     },
     {
-      "command": "clingo invaders.lp balanced5.lp --configuration=jumpy --time-limit=300",
+      "command": "clingo invaders.lp aliens5.lp --configuration=jumpy --time-limit=300",
       "mean": 18.039606032040002,
       "stddev": 0.18343296520326297,
       "median": 17.97951707344,
@@ -171,7 +171,7 @@
       ]
     },
     {
-      "command": "clingo invaders.lp balanced6.lp --configuration=jumpy --time-limit=300",
+      "command": "clingo invaders.lp aliens6.lp --configuration=jumpy --time-limit=300",
       "mean": 36.23303877634,
       "stddev": 0.34373052152740885,
       "median": 36.07823790344,
@@ -205,7 +205,7 @@
       ]
     },
     {
-      "command": "clingo invaders.lp balanced7.lp --configuration=jumpy --time-limit=300",
+      "command": "clingo invaders.lp aliens7.lp --configuration=jumpy --time-limit=300",
       "mean": 300.00534019663996,
       "stddev": 0.0007063304415783919,
       "median": 300.00521331794,
@@ -239,7 +239,7 @@
       ]
     },
     {
-      "command": "clingo invaders.lp balanced8.lp --configuration=jumpy --time-limit=300",
+      "command": "clingo invaders.lp aliens8.lp --configuration=jumpy --time-limit=300",
       "mean": 197.89079886663998,
       "stddev": 1.7826247438677356,
       "median": 197.35932183943999,
@@ -273,7 +273,7 @@
       ]
     },
     {
-      "command": "clingo invaders.lp balanced9.lp --configuration=jumpy --time-limit=300",
+      "command": "clingo invaders.lp aliens9.lp --configuration=jumpy --time-limit=300",
       "mean": 300.01118801384,
       "stddev": 0.006401832310397197,
       "median": 300.00892128794,
@@ -307,7 +307,7 @@
       ]
     },
     {
-      "command": "clingo invaders.lp balanced10.lp --configuration=jumpy --time-limit=300",
+      "command": "clingo invaders.lp aliens10.lp --configuration=jumpy --time-limit=300",
       "mean": 300.01246787714,
       "stddev": 0.002205972825304508,
       "median": 300.01289684694,

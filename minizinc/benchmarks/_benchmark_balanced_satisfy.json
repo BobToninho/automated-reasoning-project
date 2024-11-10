@@ -1,7 +1,7 @@
 {
   "results": [
     {
-      "command": "minizinc.exe invaders.mzn balanced1.mzn --time-limit 300000",
+      "command": "minizinc.exe invaders.mzn aliens1.mzn --time-limit 300000",
       "mean": 0.7181642566199999,
       "stddev": 0.03370056633686488,
       "median": 0.71137974092,
@@ -35,7 +35,7 @@
       ]
     },
     {
-      "command": "minizinc.exe invaders.mzn balanced2.mzn --time-limit 300000",
+      "command": "minizinc.exe invaders.mzn aliens2.mzn --time-limit 300000",
       "mean": 129.83744354462,
       "stddev": 3.591659236228916,
       "median": 129.66877651642,
@@ -69,7 +69,7 @@
       ]
     },
     {
-      "command": "minizinc.exe invaders.mzn balanced3.mzn --time-limit 300000",
+      "command": "minizinc.exe invaders.mzn aliens3.mzn --time-limit 300000",
       "mean": 300.57762123712007,
       "stddev": 0.02682852014059375,
       "median": 300.57232900542,
@@ -103,7 +103,7 @@
       ]
     },
     {
-      "command": "minizinc.exe invaders.mzn balanced4.mzn --time-limit 300000",
+      "command": "minizinc.exe invaders.mzn aliens4.mzn --time-limit 300000",
       "mean": 300.79552248152,
       "stddev": 0.025230267091300992,
       "median": 300.79371109842,
@@ -137,7 +137,7 @@
       ]
     },
     {
-      "command": "minizinc.exe invaders.mzn balanced5.mzn --time-limit 300000",
+      "command": "minizinc.exe invaders.mzn aliens5.mzn --time-limit 300000",
       "mean": 301.08668677182,
       "stddev": 0.03636876785475545,
       "median": 301.09943382092,
@@ -171,7 +171,7 @@
       ]
     },
     {
-      "command": "minizinc.exe invaders.mzn balanced6.mzn --time-limit 300000",
+      "command": "minizinc.exe invaders.mzn aliens6.mzn --time-limit 300000",
       "mean": 301.37125496212,
       "stddev": 0.019968642667989252,
       "median": 301.36667027042,
@@ -205,7 +205,7 @@
       ]
     },
     {
-      "command": "minizinc.exe invaders.mzn balanced7.mzn --time-limit 300000",
+      "command": "minizinc.exe invaders.mzn aliens7.mzn --time-limit 300000",
       "mean": 301.66438009332,
       "stddev": 0.038134587274744156,
       "median": 301.66386535492,
@@ -239,7 +239,7 @@
       ]
     },
     {
-      "command": "minizinc.exe invaders.mzn balanced8.mzn --time-limit 300000",
+      "command": "minizinc.exe invaders.mzn aliens8.mzn --time-limit 300000",
       "mean": 301.62449932642,
       "stddev": 0.06495538025430583,
       "median": 301.60074664792,
@@ -273,7 +273,7 @@
       ]
     },
     {
-      "command": "minizinc.exe invaders.mzn balanced9.mzn --time-limit 300000",
+      "command": "minizinc.exe invaders.mzn aliens9.mzn --time-limit 300000",
       "mean": 301.96582700032,
       "stddev": 0.06336643472932578,
       "median": 301.93899774042,
@@ -307,7 +307,7 @@
       ]
     },
     {
-      "command": "minizinc.exe invaders.mzn balanced10.mzn --time-limit 300000",
+      "command": "minizinc.exe invaders.mzn aliens10.mzn --time-limit 300000",
       "mean": 302.4083569457201,
       "stddev": 0.0647404031864518,
       "median": 302.39828518992,
